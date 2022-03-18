@@ -1,0 +1,51 @@
+PROCEDURE dot_product(v1:ARRAY_OF integer,v2:ARRAY_OF integer,VAR ps:integer)
+    VAR
+        i:integer;
+    BEGIN
+       FOR i FROM 0 TO 2  DO
+           ps:=ps+v1[i]*v2[i];
+       END_FOR
+    END
+
+    FUNCTION dot_productF(v1:ARRAY_OF integer,v2:ARRAY_OF integer) : integer
+    VAR
+         i:integer;
+         ps:integer:=0;
+    BEGIN
+         FOR i FROM 0 TO 2  DO
+           ps:=ps+v1[i]*v2[i];
+       END_FOR
+        RETURN ps ;
+    END
+    
+ALGORITHM produitScalaire
+VAR
+    v1 : ARRAY_OF integer[3];
+    v2 : ARRAY_OF integer[3];
+    ps:integer:=0;
+    i:integer;
+BEGIN
+    write("saisir les coordonnées du premier vecteur");
+    FOR i FROM 0 TO 2  DO
+        write("saisir composante ",i);
+        read (v1[i]);
+    END_FOR
+   
+    write("saisir les coordonnées du deuxième vecteur");
+    FOR i FROM 0 TO 2  DO
+        write("saisir composante ",i);
+        read (v2[i]);
+    END_FOR
+   
+   // Appel de la procédure
+    dot_product(v1,v2,ps);
+
+    //Appel de la Fonction
+    ps:=dot_productF(v1,v2);
+  
+    IF (ps=0) THEN
+         write("les deux vecteurs sont orthogonaux");
+    ELSE
+         write("les deux vecteurs ne sont pas orthogonaux");
+    END_IF
+END
